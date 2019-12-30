@@ -135,7 +135,7 @@ function ds4Write(dev) {
 		msg[75] = crc32[0]; msg[76] = crc32[1];
 		msg[77] = crc32[2]; msg[78] = crc32[3];
 		msg.shift(); //Remove 0xa2 at start.
-		dev.write(msg, true);
+		dev.write(msg);
 	}
 }
 
