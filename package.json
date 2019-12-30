@@ -9,7 +9,7 @@
     "test": "node ds3test.js"
   },
   "dependencies": {
-    "node-hid": "^1.1.0",
+    "node-hid": "blackfan/node-hid",
     "chalk": ">=2.0.0"
   },
   "keywords": [
