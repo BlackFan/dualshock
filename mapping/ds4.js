@@ -145,5 +145,5 @@ function copyTo(b,a,o) { if(!o) o=0; for(let i=0,l=a.length; i<l; i++) b[o++] = 
 function ds4WriteSound(dev, data, code) {
 	const dl = 6+data.length, msg = new Array(Math.max(dl,msgMin));
 	copyTo(msg,[code,0x40,0xa0,0,0,c=(c?0:1)]); copyTo(msg,data,6);
-	if(dl < msgMin) msg.fill(0,dl,msgMin); dev.write(msg, true);
+	if(dl < msgMin) msg.fill(0,dl,msgMin); dev.write(msg);
 }
