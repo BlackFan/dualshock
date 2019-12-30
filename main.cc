@@ -98,13 +98,13 @@ void sbcEncode(const FunctionCallbackInfo<Value>& args) {
 	//Get length/offset:
 	UINT32 ofs = 0, uLen = 0, aLen = arr->Length(), max = 0;
 	if(ar >= 2 && args[1]->IsNumber()) {
-		ofs = args[1]->NumberValue(); if(ofs < 0) { throwEx(iso,"Offset must be >= 0"); return; }
+		ofs = args[1].As<Number>()->Value(); if(ofs < 0) { throwEx(iso,"Offset must be >= 0"); return; }
 	}
 	if(ar >= 3 && args[2]->IsNumber()) {
-		uLen = args[2]->NumberValue(); if(uLen > aLen-ofs) uLen = aLen-ofs;
+		uLen = args[2].As<Number>()->Value(); if(uLen > aLen-ofs) uLen = aLen-ofs;
 	}
 	if(ar >= 4 && args[3]->IsNumber()) {
-		max = args[3]->NumberValue(); if(max <= 0) { throwEx(iso,"Max Parse must be > 0"); return; }
+		max = args[3].As<Number>()->Value(); if(max <= 0) { throwEx(iso,"Max Parse must be > 0"); return; }
 	}
 	
 	//Get params:
@@ -117,7 +117,7 @@ void sbcEncode(const FunctionCallbackInfo<Value>& args) {
 	
 	//Fill input buffer:
 	if(sbcLen < len) { sbcIn = new UINT8[len]; sbcOut = new UINT8[len]; }
-	for(UINT32 i=0; i<len; i++) sbcIn[i] = arr->Get(i+ofs)->NumberValue();
+	for(UINT32 i=0; i<len; i++) sbcIn[i] = arr->Get(i+ofs).As<Number>()->Value();
 	
 	UINT32 iPos = 0, oPos = 0; ssize_t used, size = 0;
 	
